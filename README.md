@@ -8,5 +8,5 @@ This is the link to play: https://dominicentek.github.io/SuperMarioMakerNET/
 # Legal Info
 THIS IS NO WAY PLANNED NOR AFFILIATED WITH NINTENDO!
 
-Copyright (C) 2020 Goombud Studios
+Copyright (C) 2020 Goombud Studios.
 All sprites, music, gradients and other content are all a property of their respective owners.
