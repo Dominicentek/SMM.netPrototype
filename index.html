@@ -85,7 +85,7 @@ function chance() {
 	}
 	}
 function splashTextRandom() {
-	var random = Math.floor(Math.random('') * 11);
+	var random = Math.floor(Math.random('') * 12);
 	if (random === 1) {
 		document.getElementById('splash').innerHTML = "Play your level by clicking<br>Play level"
 	} else if (random === 2) {
@@ -102,11 +102,13 @@ function splashTextRandom() {
 		document.getElementById('splash').innerHTML = "BOO!"
 	} else if (random === 8) {
 		document.getElementById('splash').innerHTML = "Windows Fail Edition REMAKE coming soon!"
-		} else if (random === 9) {
+	} else if (random === 9) {
 		document.getElementById('splash').innerHTML = "Koop the Koop the Koop the Koop the Koop<br> the Koop the Koop the Koop the Koopa"
-		} else if (random === 10) {
+	} else if (random === 10) {
 		document.getElementById('splash').innerHTML = "Crewmate, there's 1 impostor among us."
-		}
+	} else if (random === 11) {
+		document.getElementById('splash').innerHTML = "404 Error: YOU JUST GOT DISTRACTED!"
+	}
 }
 var cancelSFX = "./assets/sfx/ButtonNew.wav"
 var acceptSFX = "./assets/sfx/ButtonNew.wav"
