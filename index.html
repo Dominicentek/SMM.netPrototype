@@ -526,7 +526,8 @@ document.getElementById('wrong').style = 'color: #00cc25;'
 document.getElementById('wrong').innerHTML = 'Code accepted!'
 }
 else if (document.getElementById("codeBox").value == "sonic") {
-window.location.href = 'https://koopthekoopa.itch.io/sonic-adventure-7';
+displaygs()
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; font-family: Arial; font-size: 15px; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Will make your ears bleed. Proceed?<button onclick=\"displaygs()\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">No</button><button onclick=\"window.location.href = 'https://koopthekoopa.itch.io/sonic-adventure-7'\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Yes</button></div>"
 document.getElementById('wrong').style = 'color: #00cc25;'
 document.getElementById('wrong').innerHTML = 'Code accepted!'
 }
