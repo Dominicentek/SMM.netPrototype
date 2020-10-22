@@ -85,7 +85,7 @@ function chance() {
 	}
 	}
 function splashTextRandom() {
-	var random = Math.floor(Math.random('') * 6);
+	var random = Math.floor(Math.random('') * 7);
 	if (random === 1) {
 		document.getElementById('splash').innerHTML = "Play your level by clicking\nPlay level"
 	} else if (random === 2) {
@@ -96,6 +96,8 @@ function splashTextRandom() {
 		document.getElementById('splash').innerHTML = "Check in help to see\nhow to play"
 	} else if (random === 5) {
 		document.getElementById('splash').innerHTML = "\"Why are axolotls so flipping cute?\"<br>-LOLRyan2006 2020"
+	} else if (random === 6) {
+		document.getElementById('splash').innerHTML = "Now has a 404 page!!1!"
 	}
 }
 var cancelSFX = "./assets/sfx/cancel.wav"
