@@ -6,7 +6,7 @@ It includes alot of Game Styles, Bootlegs (That's right!) and other cool feature
 This is the link to play: https://dominicentek.github.io/SuperMarioMakerNET/
 
 # Legal Info
-THIS IS NO WAY PLANNED NOR AFFLIATED WITH NINTENDO!
+THIS IS NO WAY PLANNED NOR AFFILIATED WITH NINTENDO!
 
 Copyright (C) 2020 Goombud Studios
 All sprites, music, gradients and other content are all a property of their respective owners.
