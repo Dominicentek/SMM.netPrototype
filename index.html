@@ -982,6 +982,7 @@ function playTheGame() {
 var sound = new Audio("./assets/sfx/mario.wav");
 if (!sfxMuted) sound.play();
 // document.getElementById('titlescreencontainer').remove()
+$("#titlescreencontainer").fadeOut()
 
 document.getElementById('bgmusic').play()
 }
@@ -1193,9 +1194,9 @@ textarea {
 <div id="kava"></div>
 <text style="font-size: 24px; bottom: 5px; left: 5px; position: absolute">Copyright (C) 2020 Goombud Studios, Zangpule Company<br>Check about for info.</text></div>
 <span style="font-size: 16pt;"><i>
-<script>
+<!-- <script>
 document.getElementById('playbtn').addEventListener('click', fadeOutTitle);
-</script>
+</script> -->
 <!-- End of the the title screen code. -->
 <!-- This is the editor code. -->
 <button onclick="convertDialog()">Convert .snetlvl file (Indev 5 - Indev 7 to Indev 8+)</button><br><br>
