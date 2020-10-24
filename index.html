@@ -760,7 +760,7 @@ $('#darken').fadeOut(150);
 function download(filename, text) {
 savedlevel = 1;
 var element = document.createElement('a');
-element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text) + encodeURIComponent(getCollisionData()));
+element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text) + encodeURIComponent(getCollisionData()) + encodeURIComponent('<script>$('#editorgridcontainerd').fadeOut(0);\n$('#editorgridcontainerd').fadeIn(150);\n</script>'));
 element.setAttribute('download', filename);
 element.style.display = 'none';
 document.body.appendChild(element);
@@ -792,8 +792,6 @@ document.getElementById("editorgridcontainerd").innerHTML = "Error reading save 
 createdlevel = 0;
 }
 }
-$('#editorgridcontainerd').fadeOut(0)
-$('#editorgridcontainerd').fadeIn(150)
 }
 function placeElement(elmid) {
 var empty = false
