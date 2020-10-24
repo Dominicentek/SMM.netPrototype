@@ -2,7 +2,13 @@
 <!-- This is the whole proto code. -->
 <html id="main" translate="no" lang="en"><head><!-- This kills Google Translate --><meta name="google" content="notranslate"><title>SMM.NET Alpha 1.1</title><meta content="./assets/smbs/serverimg.png" itemprop="image"><link href="./assets/smbs/serverimg.png" rel="shortcut icon"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./assets/js/html2canvas.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+$(document).ready(function() {
+  $('img').on('contextmenu', function() {
+    return false
+  })
+})
 var variableDark = 1;
 var timerInterval = 0;
 var runningonphone = 0;
