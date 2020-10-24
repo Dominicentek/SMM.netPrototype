@@ -268,6 +268,8 @@ if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 25%; height: 25%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"toolbarchoose(5);\" style=\"width: 100%\">About Us Button</button><br><button onclick=\"toolbarchoose(4);\" style=\"width: 100%\">Get Help Button</button><br><button onclick=\"toolbarchoose(3);\" style=\"width: 100%\">Mute SFX Button</button><br><button onclick=\"toolbarchoose(2);\" style=\"width: 100%\">Mute Music Button</button><br><button onclick=\"toolbarchoose(0);\" style=\"width: 100%\">Gamestyles Button</button><br><button onclick=\"toolbarchoose(1);\" style=\"width: 100%\">Fill Button</button></div><button onclick=\"toolbarmsg()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
 }
 else {
 allowpressbutton = true;
@@ -275,8 +277,10 @@ darken = 0;
 if (!playAccept) var sound = new Audio(cancelSFX);
 else var sound = new Audio(acceptSFX);
 if (!sfxMuted) sound.play();
-document.getElementById('darken').innerHTML = "";
+/* document.getElementById('darken').innerHTML = "";
 document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+*/
+$('#darken').fadeOut(150);
 }
 }
 function win98() {
@@ -332,7 +336,7 @@ document.getElementById('cssStyle').innerHTML = 'div, img {width: 32px; height: 
 }
 function amoled() {
 darken = 0
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\">Brave one, the path to darkness opens!</div><button onclick=\"darken = 1; allowpressbutton = true;themes();\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>";
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px); font-family: Arial; font-size: 18px\">Brave one, the path to darkness opens!</div><button onclick=\"darken = 1; allowpressbutton = true;themes();\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>";
 document.getElementById('cssStyle').innerHTML = 'div, img {width: 32px; height: 32px}\ntable { border-collapse: collapse}\ntable, th, td {border: 1px solid white}\nbody {\n  color: #FFFFFF; background-color: #000000; user-select: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n}\n.border {\n  background: rgba(100, 100, 100, 0.5);\n  border: 1px solid #FFFFFF;\n  padding: 5px;\n  font-size: 12px;\n}\ntextarea, input[type="number"] {\ncolor: #FFFFFF;background-color: #333333; border: none\n}\n*  {\n  cursor: url(\'./assets/cursor.png\'), auto;\n}\ninput[type=file] { display: none }\n.border {\nbackground: rgba(255, 255, 255, 0.5);\nborder: 1px solid #FFFFFF;\npadding: 5px;\nfont-size: 12px;\n}\nbutton {\nbox-shadow: 0px 1px 0px 0px #000000;\nbackground:linear-gradient(to bottom, #ffffff 5%, #AAAAAA 100%);\nbackground-color:#000000;\nborder-radius:6px;\nborder:1px solid #000000;\ndisplay:inline-block;\ncolor:#000000;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:4px 21px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #ffffff;\n}\n.gamebutton {\nbox-shadow: 0px 1px 0px 0px #000000;\nbackground:linear-gradient(to bottom, #ffffff 5%, #AAAAAA 100%);\nbackground-color:#000000;\nborder-radius:5px;\nborder:1px solid #000000;\ndisplay:inline-block;\ncolor:#000000;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:1px 16px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #ffffff;\n}\nbutton:hover {\nbackground:linear-gradient(to bottom, #AAAAAA 5%, #FFFFFF 100%);\nbackground-color:#000000;\n}\ninput {\nbackground-color:#333333;\n}\ntextarea {\nbackground-color:#333333;\n}'
 }
 function win31() {
@@ -490,9 +494,12 @@ dialogSFX = "./assets/sfx/UbuntuWarning.ogg"
 acceptSFX = "./assets/sfx/UbuntuButton.ogg"
 cancelSFX = "./assets/sfx/UbuntuButton.ogg";
 }
-
 allowpressbutton = true;
-themes(true, true)
+if (id != 5) {
+displaygs(true, true);
+} else {
+themes(true, true);
+}
 }
 function themes(playAccept, fromScrollbar) {
 if (allowpressbutton){
@@ -503,10 +510,16 @@ darken = 1;
 if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"changeTheme(0);\" style=\"width: 100%\">Spicy</button><br><button onclick=\"changeTheme(1);\" style=\"width: 100%\">Aqua</button><br><button onclick=\"changeTheme(2);\" style=\"width: 100%\">Flame</button><br><button onclick=\"changeTheme(3);\" style=\"width: 100%\">Jade</button><br><button onclick=\"if (variableDark == 1) { changeTheme(5); }\" onmousedown=\" timerInterval = setTimeout(function() { amoled(); variableDark = 0; }, 3000 ); variableDark = 1;\" onmouseup=\"clearInterval(timerInterval); if (variableDark == 1) { changeTheme(5); }; variableDark = 1\" style=\"width: 100%\">Dark</button><br><button onclick=\"changeTheme(4)\" style=\"width: 100%\">Light (Original)</button><br><button onclick=\"changeTheme(6)\" style=\"width: 100%\">Chocolate</button><br><button onclick=\"changeTheme(7)\" style=\"width: 100%\">Caramel</button><br><button onclick=\"changeTheme(8)\" style=\"width: 100%\">Plex</button><br><button onclick=\"changeTheme(9)\" style=\"width: 100%\">Slate</button><br><button onclick=\"changeTheme(10)\" style=\"width: 100%\">Whistler</button><br><button onclick=\"changeTheme(11)\" style=\"width: 100%\">Wii-Style</button><br><button onclick=\"changeTheme(12)\" style=\"width: 100%\">Gamecube-Style</button><br><button onclick=\"changeTheme(13)\" style=\"width: 100%\">Summer</button><br><button onclick=\"changeTheme(14)\" style=\"width: 100%\">Windows 98</button><button onclick=\"changeTheme(15);\" style=\"width: 100%\">Windows XP</button><br><button onclick=\"changeTheme(16);\" style=\"width: 100%\">Windows 10</button><br><button onclick=\"changeTheme(17);\" style=\"width: 100%\">???</button><br><button onclick=\"changeTheme(18);\" style=\"width: 100%\">Windows 3.1</button><br><button onclick=\"changeTheme(19);\" style=\"width: 100%\">Windows CE 1.0</button><br><button onclick=\"changeTheme(20);\" style=\"width: 100%\">Windows Mobile 6.1</button><br><button onclick=\"changeTheme(21);\" style=\"width: 100%\">Windows 1.0</button><br><button onclick=\"changeTheme(22);\" style=\"width: 100%\">Windows CE 2.0</button><br><button onclick=\"changeTheme(24);\" style=\"width: 100%\">Windows Media Center 2005</button><br><button onclick=\"changeTheme(25);\" style=\"width: 100%\">Windows Media Center 2007</button><br><button onclick=\"changeTheme(26);\" style=\"width: 100%\">Windows Media Center 2009</button><br><button onclick=\"changeTheme(27);\" style=\"width: 100%\">OS/2 Warp</button><br><button onclick=\"changeTheme(28);\" style=\"width: 100%\">Windows Embedded 2009</button><br><button onclick=\"changeTheme(30);\" style=\"width: 100%\">Windows Home Server</button><br><button onclick=\"changeTheme(32);\" style=\"width: 100%\">Windows Home Server 2011</button><br><button onclick=\"changeTheme(29);\" style=\"width: 100%\">Windows Mobile 5.0</button><br><button onclick=\"changeTheme(31);\" style=\"width: 100%\">Windows Vista</button><br><button onclick=\"changeTheme(33);\" style=\"width: 100%\">Windows 7</button><br><button onclick=\"changeTheme(34);\" style=\"width: 100%\">Windows 8</button><br><button onclick=\"changeTheme(35);\" style=\"width: 100%\">Windows 10x</button><br><button onclick=\"changeTheme(36);\" style=\"width: 100%\">MacOS</button><br><button onclick=\"changeTheme(37);\" style=\"width: 100%\">Ubuntu</button></div><button onclick=\"customTheme()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 32px; left 5px\">Custom Theme</button><button onclick=\"allowpressbutton = true;themes();\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"changeTheme(0);\" style=\"width: 100%\">Spicy</button><br><button onclick=\"changeTheme(1);\" style=\"width: 100%\">Aqua</button><br><button onclick=\"changeTheme(2);\" style=\"width: 100%\">Flame</button><br><button onclick=\"changeTheme(3);\" style=\"width: 100%\">Jade</button><br><button onclick=\"if (variableDark == 1) { changeTheme(5); }\" onmousedown=\" timerInterval = setTimeout(function() { amoled(); variableDark = 0; }, 3000 ); variableDark = 1;\" onmouseup=\"clearInterval(timerInterval); if (variableDark == 1) { changeTheme(5); }; variableDark = 1\" style=\"width: 100%\">Dark</button><br><button onclick=\"changeTheme(4)\" style=\"width: 100%\">Light (Original)</button><br><button onclick=\"changeTheme(6)\" style=\"width: 100%\">Chocolate</button><br><button onclick=\"changeTheme(7)\" style=\"width: 100%\">Caramel</button><br><button onclick=\"changeTheme(8)\" style=\"width: 100%\">Plex</button><br><button onclick=\"changeTheme(9)\" style=\"width: 100%\">Slate</button><br><button onclick=\"changeTheme(10)\" style=\"width: 100%\">Whistler</button><br><button onclick=\"changeTheme(11)\" style=\"width: 100%\">Wii-Style</button><br><button onclick=\"changeTheme(12)\" style=\"width: 100%\">Gamecube-Style</button><br><button onclick=\"changeTheme(13)\" style=\"width: 100%\">Summer</button><br><button onclick=\"changeTheme(14)\" style=\"width: 100%\">Windows 98</button><button onclick=\"changeTheme(15);\" style=\"width: 100%\">Windows XP</button><br><button onclick=\"changeTheme(16);\" style=\"width: 100%\">Windows 10</button><br><button onclick=\"changeTheme(17);\" style=\"width: 100%\">???</button><br><button onclick=\"changeTheme(18);\" style=\"width: 100%\">Windows 3.1</button><br><button onclick=\"changeTheme(19);\" style=\"width: 100%\">Windows CE 1.0</button><br><button onclick=\"changeTheme(20);\" style=\"width: 100%\">Windows Mobile 6.1</button><br><button onclick=\"changeTheme(21);\" style=\"width: 100%\">Windows 1.0</button><br><button onclick=\"changeTheme(22);\" style=\"width: 100%\">Windows CE 2.0</button><br><button onclick=\"changeTheme(24);\" style=\"width: 100%\">Windows Media Center 2005</button><br><button onclick=\"changeTheme(25);\" style=\"width: 100%\">Windows Media Center 2007</button><br><button onclick=\"changeTheme(26);\" style=\"width: 100%\">Windows Media Center 2009</button><br><button onclick=\"changeTheme(27);\" style=\"width: 100%\">OS/2 Warp</button><br><button onclick=\"changeTheme(28);\" style=\"width: 100%\">Windows Embedded 2009</button><br><button onclick=\"changeTheme(30);\" style=\"width: 100%\">Windows Home Server</button><br><button onclick=\"changeTheme(32);\" style=\"width: 100%\">Windows Home Server 2011</button><br><button onclick=\"changeTheme(29);\" style=\"width: 100%\">Windows Mobile 5.0</button><br><button onclick=\"changeTheme(31);\" style=\"width: 100%\">Windows Vista</button><br><button onclick=\"changeTheme(33);\" style=\"width: 100%\">Windows 7</button><br><button onclick=\"changeTheme(34);\" style=\"width: 100%\">Windows 8</button><br><button onclick=\"changeTheme(35);\" style=\"width: 100%\">Windows 10x</button><br><button onclick=\"changeTheme(36);\" style=\"width: 100%\">MacOS</button><br><button onclick=\"changeTheme(37);\" style=\"width: 100%\">Ubuntu</button></div><button onclick=\"customTheme()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 32px; left 5px\">Custom Theme</button><button onclick=\"allowpressbutton = true;displaygs();\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
 }
 else {
 buttontimer = 0;
+/* document.getElementById('darken').innerHTML = "";
+document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+$('#darken').fadeOut(150);*/
+$('#darken').fadeOut(150);
 document.getElementById('darken').innerHTML = "";
 document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
 allowpressbutton = true;
@@ -621,6 +634,8 @@ if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; overflow-y: scroll; transform: translate(-50%, -50%)\">Hint: It's a OC<button onclick=\"hint(true); darken = 0;\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Hmmmmmmm...</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
 }
 else {
 allowpressbutton = true;
@@ -628,8 +643,10 @@ darken = 0;
 if (!playAccept) var sound = new Audio(cancelSFX);
 else var sound = new Audio(acceptSFX);
 if (!sfxMuted) sound.play();
-document.getElementById('darken').innerHTML = "";
+/* document.getElementById('darken').innerHTML = "";
 document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+*/
+$('#darken').fadeOut(150);
 }
 }
 function het(playAccept, fromScrollbar) {
@@ -640,6 +657,8 @@ if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">You are about to see a very scary image. Wanna see it?<button onclick=\"het(); darken = 0;\" style=\"width: calc(50% - 11px); position: absolute; bottom: 5px; left: 5px\">No</button><button onclick=\"het2()\" style=\"width: calc(50% - 11px); position: absolute; bottom: 5px; right: 5px\">Yes</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
 }
 else {
 allowpressbutton = true;
@@ -647,8 +666,10 @@ darken = 0;
 if (!playAccept) var sound = new Audio(cancelSFX);
 else var sound = new Audio(acceptSFX);
 if (!sfxMuted) sound.play();
-document.getElementById('darken').innerHTML = "";
+/* document.getElementById('darken').innerHTML = "";
 document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+*/
+$('#darken').fadeOut(150);
 }
 }
 function het2(playAccept, fromScrollbar) {
@@ -717,6 +738,8 @@ if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"display: block; width: 50%; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"switchGamestyle(0)\"><img src=\"./assets/smb.png\"></button><button onclick=\"switchGamestyle(1)\"><img src=\"./assets/smbs.png\"></button><button onclick=\"switchGamestyle(17)\"><img src=\"./assets/thelevelsarelost.png\"></button><button onclick=\"switchGamestyle(9)\"><img src=\"./assets/smb2.png\"></button><button onclick=\"switchGamestyle(2)\"><img src=\"./assets/smb3.png\"><button onclick=\"switchGamestyle(14)\"><img src=\"./assets/sml.png\"></button></button><button onclick=\"switchGamestyle(21)\"><img src=\"./assets/sboi.png\"></button><button onclick=\"switchGamestyle(3)\"><img src=\"./assets/smw.png\"></button><button onclick=\"switchGamestyle(6)\"><img src=\"./assets/sml2.png\"></button><button onclick=\"switchGamestyle(4)\"><img src=\"./assets/smas.png\"></button><button onclick=\"switchGamestyle(12)\"><img src=\"./assets/sm8w.png\"></button><button onclick=\"switchGamestyle(8)\"><img src=\"./assets/yi.png\"></button><button onclick=\"switchGamestyle(22)\"><img src=\"./assets/smrpg.png\"></button><button onclick=\"switchGamestyle(19)\"><img src=\"./assets/sm64.png\"></button><button onclick=\"switchGamestyle(20)\"><img src=\"./assets/smbs3.png\"></button><button onclick=\"switchGamestyle(13)\"><img src=\"./assets/sma2.png\"></button><button onclick=\"switchGamestyle(10)\"><img src=\"./assets/sma4.png\"></button><button onclick=\"switchGamestyle(5)\"><img src=\"./assets/nsmbds.png\"></button><button onclick=\"switchGamestyle(11)\"><img src=\"./assets/nsmbw.png\"><button onclick=\"switchGamestyle(18)\"><img src=\"./assets/mapno4.png\"></button></button><button onclick=\"switchGamestyle(15)\"><img src=\"./assets/nsmbu.png\"></button><button onclick=\"switchGamestyle(16)\"><img src=\"./assets/awful.png\"></button><br><button onclick=\"customFiles()\" style=\"width: calc(100% - 5px)\">Upload Custom</button></div><button onclick=\"displaygs()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
 }
 else {
 allowpressbutton = true;
@@ -724,8 +747,10 @@ darken = 0;
 if (!playAccept) var sound = new Audio(cancelSFX);
 else var sound = new Audio(acceptSFX);
 if (!sfxMuted) sound.play();
-document.getElementById('darken').innerHTML = "";
+/* document.getElementById('darken').innerHTML = "";
 document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+*/
+$('#darken').fadeOut(150);
 }
 }
 function download(filename, text) {
