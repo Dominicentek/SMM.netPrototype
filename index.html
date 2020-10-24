@@ -760,7 +760,7 @@ $('#darken').fadeOut(150);
 function download(filename, text) {
 savedlevel = 1;
 var element = document.createElement('a');
-element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text) + encodeURIComponent(getCollisionData()) + encodeURIComponent("<script>\n$('#editorgridcontainerd').fadeOut(0);\n$('#editorgridcontainerd').fadeIn(150);\n</script>"));
+element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text) + encodeURIComponent(getCollisionData()) + encodeURIComponent("<some tag>"));
 element.setAttribute('download', filename);
 element.style.display = 'none';
 document.body.appendChild(element);
@@ -771,7 +771,7 @@ function checkFileName(filename, text) {
 levelName = document.getElementById("savefilename").value;
 if (document.getElementById("savefilename").value == '') {
 levelName = "My Level";
-download("My Level.snetlvl", text)
+download(levelName + ".snetlvl", text)
 }else{
 download(filename, text)
 }
