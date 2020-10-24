@@ -694,7 +694,7 @@ var width = parseInt(document.getElementById('width').value, 10)
 var height = parseInt(document.getElementById('height').value, 10)
 addGrid(width, height)
 }
-function addGrid(width, height) {
+function addGrid(width, height, fadeGrid) {
 savedlevel = 0;
 createdlevel = 1;
 idIndex = 0;
@@ -729,6 +729,10 @@ tr.appendChild(td);
 tablecontainer.innerHTML = '';
 tablecontainer.appendChild(table);
 displaygs(true)
+if (fadeGrid) {
+$('#editorgrid').fadeOut(0);
+$('#editorgrid').fadeIn(150);
+}
 }
 function displaygs(playAccept, fromScrollbar) {
 if (darken == 0) {
@@ -946,7 +950,7 @@ function confirmation() {
 if (allowpressbutton) {
 displaygs()
 if (parseInt(document.getElementById('width').value) >= 1 && parseInt(document.getElementById('height').value) >= 1) {
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; font-family: Arial; font-size: 15px; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\">You are about to make a new level. Be aware that this will replace the current submitted level. Are you sure you want to submit changes?<button onclick=\"displaygs()\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">No</button><button onclick=\"addGrid(parseInt(document.getElementById('width').value), parseInt(document.getElementById('height').value))\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Yes</button></div>"
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 50%; font-family: Arial; font-size: 15px; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\">You are about to make a new level. Be aware that this will replace the current submitted level. Are you sure you want to submit changes?<button onclick=\"displaygs()\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">No</button><button onclick=\"addGrid(parseInt(document.getElementById('width').value), parseInt(document.getElementById('height').value), true)\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Yes</button></div>"
 }else{
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family:Arial; font-size: 18px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">The width and/or height is under 1, is not an integer or has not been set.<button onclick=\"displaygs(true)\" style=\"width: calc(100% - 6px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>"
 }
