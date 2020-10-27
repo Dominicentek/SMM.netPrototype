@@ -23,7 +23,7 @@ All theme IDS:
 20 = Windows Mobile 6.1
 21 = Windows 1.0
 22 = Windows CE 2.0
- -- NO THEME DEFINED IN ID 23 --
+23 = Windows 98 PLUS! (Unused)
 24 = Windows Media Center 2005
 25 = Windows Media Center 2007
 26 = Windows Media Center 2009
@@ -44,7 +44,7 @@ All theme IDS:
 41 = Windows 2.0
 42 = Windows 7 Beta
 43 = Windows Embedded Compact 2013
-44 = Windows 98 PLUS!
+44 = Windows 98 PLUS! (Used)
 45 = Windows XP Starter
 46 = Windows NT 4.0 Terminal Server
 47 = Windows Server 2008
