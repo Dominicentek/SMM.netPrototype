@@ -11,6 +11,9 @@ $(document).ready(function() {
 var variableDark = 1;
 var timerInterval = 0;
 var runningonphone = 0;
+var changedWithParams = false;
+const params = new URLSearchParams(window.location.search);
+var themesParam = params.get('theme');
 if( navigator.userAgent.match(/Android/i)
  || navigator.userAgent.match(/webOS/i)
  || navigator.userAgent.match(/iPhone/i)
@@ -81,6 +84,9 @@ function fadeOutTitle() {
         }
     }, 30);
 }
+function isBetween(n, a, b) {
+   return (n - a) * (n - b) <= 0;
+}
 function chance() {
     var roll = Math.floor(Math.random('') * 1000) + 1;
 	if (roll === 2) {
@@ -89,6 +95,16 @@ function chance() {
 	document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><b>Hey you! Send a PM to LOLRyan2006 the Goombud with this password: 'pancakesiwanttoeatalsoiwantcharacterpack' To win a prize!<br><br>NOTE: It might take a while to get your prize.</b><button onclick=\"toolbarmsg(true)\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">OK</button><a href=\"https://www.smwcentral.net/?p=pm&do=compose&user=43042\" target=\"_blank\"><button onclick=\"toolbarmsg(true)\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Send PM</button></a></div>"
 	}
 	}
+function getParams() {
+	changedWithParams = true;	
+	// changeTheme(52);
+	if (!isBetween(parseInt(themesParam, 10), 0, 52)) {
+		displaygs();
+		document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 24px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Invalid Theme ID.<button onclick=\"toolbarmsg(true)\" style=\"width: calc(100% - 6px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>"
+	}
+	changeTheme(parseInt(themesParam, 10));
+	changedWithParams = false;
+}
 function splashTextRandom() {
 	var random = Math.floor(Math.random('') * 13);
 	if (random === 1) {
@@ -331,6 +347,7 @@ function questionQuestionQuestion() {
 playacceptsound()
 document.getElementById('cssStyle').innerHTML = 'div, img {width: 32px; height: 32px}\ntable { border-collapse: collapse}\ntable, th, td {border: 1px solid black}\nbody {\n background-attachment: fixed; color: #000000; background-color: #9effc7; user-select: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n}\n.border {\n  background: rgba(100, 100, 100, 0.5);\n  border: 1px solid #000000;\n  padding: 5px;\n  font-size: 12px;\n}\ntextarea, input[type="number"] {\ncolor: #000000;background-color: #fdf5de; border: none\n}\n*  {\n  cursor: url(\'./assets/cursor.png\'), auto;\n}\ninput[type=file] { display: none }\n.border {\nbackground: rgba(255, 255, 255, 0.5);\nborder: 1px solid #300202;\npadding: 5px;\nfont-size: 12px;\n}\nbutton {\nbox-shadow: 0px 1px 0px 0px #300202;\nbackground:linear-gradient(to bottom, #f684b7 5%, #825470 100%);\nbackground-color:#c2afff;\nborder-radius:6px;\nborder:1px solid #000000;\ndisplay:inline-block;\ncolor:#ffffff;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:4px 21px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #000000;\n}\n.gamebutton {\nbox-shadow: 0px 1px 0px 0px #300202;\nbackground:linear-gradient(to bottom, #f684b7 5%, #825470 100%);\nbackground-color:#0d2372;\nborder-radius:5px;\nborder:1px solid #300202;\ndisplay:inline-block;\ncolor:#ffffff;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:1px 16px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #000000;\n}\nbutton:hover {\nbackground:linear-gradient(to bottom, #825470 5%, #f684b7 100%);\nbackground-color:#1d2372;\n}\ninput {\nbackground-color:#fdf5de;\n}\ntextarea {\nbackground-color:#fdf5de;\n}'
 darken = 0
+if (changedWithParams) displaygs();
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 18px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\">You will never know what this theme was based-off</div><button onclick=\"allowpressbutton = true;displaygs(true);\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>";
 }
 function dark() {
@@ -584,10 +601,12 @@ cancelSFX = "./assets/sfx/Mobile5Cancel.wav";
 }
 else if (id == 52) document.getElementById('cssStyle').innerHTML = 'div, img {width: 32px; height: 32px}\ntable { border-collapse: collapse}\ntable, th, td {border: 1px solid white}\nbody {\n background-attachment: fixed; color: #FFFFFF; background-image: url(./assets/jack-o-laten.png); background-position: bottom right; background-repeat: no-repeat; background-color: #000000; user-select: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n}\n.border {\n  background: rgba(100, 100, 100, 0.5);\n  border: 1px solid #FFFFFF;\n  padding: 5px;\n  font-size: 12px;\n}\ntextarea, input[type="number"] {\ncolor: #ff9d00;background-color: #b58d45; border: none\n}\n*  {\n  cursor: url(\'./assets/cursor.png\'), auto;\n}\ninput[type=file] { display: none }\n.border {\nbackground: rgba(255, 255, 255, 0.5);\nborder: 1px solid #300202;\npadding: 5px;\nfont-size: 12px;\n}\nbutton {\nbox-shadow: 0px 1px 0px 0px #300202;\nbackground:linear-gradient(to bottom, #e39100 5%, #995502 100%);\nbackground-color:#c2afff;\nborder-radius:6px;\nborder:1px solid #000000;\ndisplay:inline-block;\ncolor:#FFFFFF;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:4px 21px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #000000;\n}\n.gamebutton {\nbox-shadow: 0px 1px 0px 0px #300202;\nbackground:linear-gradient(to bottom, #e39100 5%, #995502 100%);\nbackground-color:#0d2372;\nborder-radius:5px;\nborder:1px solid #300202;\ndisplay:inline-block;\ncolor:#ffffff;\nfont-family:Arial;\nfont-size:15px;\nfont-weight:bold;\npadding:1px 16px;\ntext-decoration:none;\ntext-shadow:0px 1px 0px #333333;\n}\nbutton:hover {\nbackground:linear-gradient(to bottom, #995502 5%, #e39100 100%);\nbackground-color:#1d2372;\n}\ninput {\nbackground-color:#ff9d00;\n}\ntextarea {\nbackground-color:#ff9d00;\n}'
 allowpressbutton = true;
+if (!changedWithParams) {
 if (id != 5) {
 displaygs(true, true);
 } else {
 themes(true, true);
+}
 }
 }
 function themes(playAccept, fromScrollbar) {
@@ -1297,7 +1316,7 @@ textarea {
 	transform: scale(1.15);
 }
 </style>
-</head><body id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom()">
+</head><body id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom(); getParams()">
 <!-- This is the title screen code. -->
 <div class="dashboard" style="position: fixed; top: 0px; left: 0px; z-index: -1000; height: 100%; width: 100%"></div>
 <div class="darkencss" id="darken" style="pointer-events: none; background: transparent none repeat scroll 0% 0%; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;"></div><div class="titlescreenclass" id="titlescreencontainer" style="overflow-y: scroll; top: 0px; left: 0px; position: fixed; width: 100%; height: 100%; background-color: #FFFFFF; z-index: 1">
