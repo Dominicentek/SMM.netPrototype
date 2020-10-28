@@ -107,6 +107,12 @@ function getParams() {
 		changedWithParams = false;
 	}
 }
+function boot() {
+	var roll = Math.floor(Math.random('') * 9);
+	if (roll == 7) {
+		document.getElementById('darkbeast').innerHTML = "<img onclick=\"var coinSound = new Audio('./assets/sfx/coin.wav'); coinSound.play();\" style=\"width: 15px; height: 20px;\" alt=\"The beast from the Dark.\" title=\"Click on him to pet him ;)\" src=\"./assets/thebeastfromthedark.png\"></img>";
+	}
+}
 function splashTextRandom() {
 	var random = Math.floor(Math.random('') * 13);
 	if (random === 1) {
@@ -1318,7 +1324,7 @@ textarea {
 	transform: scale(1.15);
 }
 </style>
-</head><body id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom(); getParams()">
+</head><body id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom(); getParams(); boot()">
 <!-- This is the title screen code. -->
 <div class="dashboard" style="position: fixed; top: 0px; left: 0px; z-index: -1000; height: 100%; width: 100%"></div>
 <div class="darkencss" id="darken" style="pointer-events: none; background: transparent none repeat scroll 0% 0%; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;"></div><div class="titlescreenclass" id="titlescreencontainer" style="overflow-y: scroll; top: 0px; left: 0px; position: fixed; width: 100%; height: 100%; background-color: #FFFFFF; z-index: 1">
@@ -1333,7 +1339,7 @@ textarea {
 <button class="titlebutton" onclick="submitCode()">Submit</button><br><p id="wrong" style="color: #fc0303"></p></text></div>
 <text style="color: yellow; font-size: 23px; text-shadow: black 1px 1px 1px; right: 227px; top: 40%; position: absolute; transform: rotate(-10deg);" id="splash">Now with playable Mario!</text>
 <div id="kava"></div>
-<text style="font-size: 24px; bottom: 5px; left: 5px; position: absolute">Copyright (C) 2020 Goombud Studios, Zangpule Company<br>Check about for info.</text></div>
+<text style="font-size: 24px; bottom: 5px; left: 5px; position: absolute">Copyright (C) 2020 Goombud Studios, Zangpule Company<br>Check about for info.<span id="darkbeast"></span></text></div>
 <span style="font-size: 16pt;"><i>
 <!-- <script>
 document.getElementById('playbtn').addEventListener('click', fadeOutTitle);
