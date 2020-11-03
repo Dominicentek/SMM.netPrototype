@@ -99,7 +99,7 @@ function getParams() {
 	if (params.get('theme')) {
 		changedWithParams = true;	
 		// changeTheme(52);
-		if (!isBetween(parseInt(themesParam, 10), 0, 52)) {
+		if (!isBetween(parseInt(themesParam, 10), 0, 63)) {
 			displaygs();
 			document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 24px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Invalid Theme ID.<button onclick=\"toolbarmsg(true)\" style=\"width: calc(100% - 6px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>"
 		}
