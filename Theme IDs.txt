@@ -1,4 +1,4 @@
-All theme IDS:
+All theme IDs:
 
 0 = Spicy
 1 = Aqua
@@ -23,7 +23,7 @@ All theme IDS:
 20 = Windows Mobile 6.1
 21 = Windows 1.0
 22 = Windows CE 2.0
-23 = Windows 98 PLUS! (Unused)
+23 = High Contrast (White)
 24 = Windows Media Center 2005
 25 = Windows Media Center 2007
 26 = Windows Media Center 2009
@@ -44,7 +44,7 @@ All theme IDS:
 41 = Windows 2.0
 42 = Windows 7 Beta
 43 = Windows Embedded Compact 2013
-44 = Windows 98 PLUS! (Used)
+44 = Windows 98 PLUS!
 45 = Windows XP Starter
 46 = Windows NT 4.0 Terminal Server
 47 = Windows Server 2008
@@ -53,3 +53,16 @@ All theme IDS:
 50 = Windows Mobile 6.0
 51 = Windows Mobile 2003
 52 = Halloween
+53 = High Contrast (Black)
+54 = High Contrast #1
+55 = High Contrast #2
+56 = Color Blind
+57 = Creamy Purple
+58 = Neon
+59 = Peppermint
+60 = Axolotl
+61 = Beast (From the Dark)
+62 = Blood
+63 = Nature
+
+Written by Koop the Koopa.
