@@ -1,5 +1,5 @@
 <!-- This is the whole proto code. -->
-<html id="main" translate="no" lang="en"><head><!-- This kills Google Translate --><meta name="google" content="notranslate"><title>SMM.NET Alpha 1.1.6</title><meta content="./assets/smbs/serverimg.png" itemprop="image"><link href="./assets/smbs/serverimg.png" rel="shortcut icon"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html id="main" translate="no" lang="en"><head><!-- This kills Google Translate --><meta name="google" content="notranslate"><title>SMM.NET Alpha 1.1.7</title><meta content="./assets/smbs/serverimg.png" itemprop="image"><link href="./assets/smbs/serverimg.png" rel="shortcut icon"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./assets/js/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -8,6 +8,7 @@ $(document).ready(function() {
     return false
   })
 })
+var started = false;
 var variableDark = 1;
 var timerInterval = 0;
 var runningonphone = 0;
@@ -258,6 +259,7 @@ else if (id == 20) gs = "smbs3"
 else if (id == 21) gs = "sboi"
 else if (id == 22) gs = "smrpg"
 else if (id == 23) gs = "smm2014smb"
+else if (id == 24) gs = "mm2"
 document.getElementById('musicsource').src = "./assets/" + gs + "/theme.mp3"
 document.getElementById("bgmusic").load();
 if (musicMuted) document.getElementById("bgmusic").pause();
@@ -775,6 +777,16 @@ changeTheme(17)
 document.getElementById('wrong').innerHTML = 'Code accepted!'
 document.getElementById('wrong').style = 'color: #00cc25;'
 }
+else if (document.getElementById("codeBox").value == 'rice') {
+goFullScreen()
+document.getElementById('thebody').innerHTML = '<img src="./assets/rice.jpg" style="width: 100%; height: 100%"></img>'
+}
+else if (document.getElementById("codeBox").value == 'aaaa') {
+document.getElementById('titleSong').src = './assets/aaaa.mp3'
+document.getElementById('titleMusic').load()
+document.getElementById('wrong').style = 'color: #00cc25;'
+document.getElementById('wrong').innerHTML = 'Code accepted!'
+}
 else document.getElementById('wrong').innerHTML = '<span style="color: #fc0303;">Wrong code!</span>'
 }
 function hint(playAccept, fromScrollbar) {
@@ -892,7 +904,7 @@ darken = 1;
 if (!fromScrollbar) var sound = new Audio(dialogSFX);
 if (!sfxMuted) sound.play();
 document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"display: block; width: 50%; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"switchGamestyle(0)\"><img src=\"./assets/smb.png\"></button><button onclick=\"switchGamestyle(1)\"><img src=\"./assets/smbs.png\"></button><button onclick=\"switchGamestyle(17)\"><img src=\"./assets/thelevelsarelost.png\"></button><button onclick=\"switchGamestyle(9)\"><img src=\"./assets/smb2.png\"></button><button onclick=\"switchGamestyle(2)\"><img src=\"./assets/smb3.png\"><button onclick=\"switchGamestyle(14)\"><img src=\"./assets/sml.png\"></button></button><button onclick=\"switchGamestyle(21)\"><img src=\"./assets/sboi.png\"></button><button onclick=\"switchGamestyle(3)\"><img src=\"./assets/smw.png\"></button><button onclick=\"switchGamestyle(6)\"><img src=\"./assets/sml2.png\"></button><button onclick=\"switchGamestyle(4)\"><img src=\"./assets/smas.png\"></button><button onclick=\"switchGamestyle(12)\"><img src=\"./assets/sm8w.png\"></button><button onclick=\"switchGamestyle(8)\"><img src=\"./assets/yi.png\"></button><button onclick=\"switchGamestyle(22)\"><img src=\"./assets/smrpg.png\"></button><button onclick=\"switchGamestyle(19)\"><img src=\"./assets/sm64.png\"></button><button onclick=\"switchGamestyle(20)\"><img src=\"./assets/smbs3.png\"></button><button onclick=\"switchGamestyle(13)\"><img src=\"./assets/sma2.png\"></button><button onclick=\"switchGamestyle(10)\"><img src=\"./assets/sma4.png\"></button><button onclick=\"switchGamestyle(5)\"><img src=\"./assets/nsmbds.png\"></button><button onclick=\"switchGamestyle(11)\"><img src=\"./assets/nsmbw.png\"><button onclick=\"switchGamestyle(18)\"><img src=\"./assets/mapno4.png\"></button></button><button onclick=\"switchGamestyle(15)\"><img src=\"./assets/nsmbu.png\"></button><button onclick=\"switchGamestyle(16)\"><img src=\"./assets/awful.png\"></button><button onclick=\"switchGamestyle(23)\"><img src=\"./assets/smm2014smb/mario.png\"></button><br><button onclick=\"customFiles()\" style=\"width: calc(100% - 5px)\">Upload Custom</button></div><button onclick=\"displaygs()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"display: block; width: 50%; height: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><div style=\" overflow-y: scroll; width: 100%; height: calc(92% - 25px)\"><button onclick=\"switchGamestyle(0)\"><img src=\"./assets/smb.png\"></button><button onclick=\"switchGamestyle(1)\"><img src=\"./assets/smbs.png\"></button><button onclick=\"switchGamestyle(17)\"><img src=\"./assets/thelevelsarelost.png\"></button><button onclick=\"switchGamestyle(9)\"><img src=\"./assets/smb2.png\"></button><button onclick=\"switchGamestyle(2)\"><img src=\"./assets/smb3.png\"><button onclick=\"switchGamestyle(14)\"><img src=\"./assets/sml.png\"></button></button><button onclick=\"switchGamestyle(21)\"><img src=\"./assets/sboi.png\"></button><button onclick=\"switchGamestyle(3)\"><img src=\"./assets/smw.png\"></button><button onclick=\"switchGamestyle(6)\"><img src=\"./assets/sml2.png\"></button><button onclick=\"switchGamestyle(4)\"><img src=\"./assets/smas.png\"></button><button onclick=\"switchGamestyle(12)\"><img src=\"./assets/sm8w.png\"></button><button onclick=\"switchGamestyle(8)\"><img src=\"./assets/yi.png\"></button><button onclick=\"switchGamestyle(22)\"><img src=\"./assets/smrpg.png\"></button><button onclick=\"switchGamestyle(19)\"><img src=\"./assets/sm64.png\"></button><button onclick=\"switchGamestyle(20)\"><img src=\"./assets/smbs3.png\"></button><button onclick=\"switchGamestyle(13)\"><img src=\"./assets/sma2.png\"></button><button onclick=\"switchGamestyle(10)\"><img src=\"./assets/sma4.png\"></button><button onclick=\"switchGamestyle(5)\"><img src=\"./assets/nsmbds.png\"></button><button onclick=\"switchGamestyle(11)\"><img src=\"./assets/nsmbw.png\"><button onclick=\"switchGamestyle(18)\"><img src=\"./assets/mapno4.png\"></button></button><button onclick=\"switchGamestyle(15)\"><img src=\"./assets/nsmbu.png\"></button><button onclick=\"switchGamestyle(16)\"><img src=\"./assets/awful.png\"></button><button onclick=\"switchGamestyle(23)\"><img src=\"./assets/smm2014smb/mario.png\"></button><button onclick=\"switchGamestyle(24)\"><img style=\"height: 32px; width: 42px\" src=\"./assets/mm2.png\"></button><br><button onclick=\"customFiles()\" style=\"width: calc(100% - 5px)\">Upload Custom</button></div><button onclick=\"displaygs()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
 $('#darken').fadeOut(0);
 $('#darken').fadeIn(150);
 }
@@ -1050,7 +1062,7 @@ function sendDownloadRequest() {
 if (allowpressbutton) {
 displaygs()
 if (createdlevel == 1) {
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 40%; font-family: Arial; font-size: 15px; height: 15%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Please enter the filename of you level:<textarea id=\"savefilename\" onclick=\"this.select()\" style=\"resize: none; height: 18px; width: 475px\">" + levelName + "</textarea><text>.snetlvl</text><button onclick=\"displaygs()\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">Cancel</button><button onclick=\"checkFileName(document.getElementById('savefilename').value + '.snetlvl', document.getElementById('editorgridcontainer').innerHTML), toolbarmsg(true)\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Save Level</button></div>"
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; width: 40%; font-family: Arial; font-size: 15px; height: 20%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Please enter the filename of you level:<textarea id=\"savefilename\" onclick=\"this.select()\" style=\"resize: none; height: 18px; width: 460px\">" + levelName + "</textarea><text>.snetlvl</text><br>Your name:<br><textarea id=\"creator\" style=\"resize: none; height: 18px; width: 470px\">Unknown</textarea><button onclick=\"displaygs()\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; left: 5px\">Cancel</button><button onclick=\"checkFileName(document.getElementById('savefilename').value + '.snetlvl', '<text>Level by:' + document.getElementById('creator').value + '</text> ' +document.getElementById('editorgridcontainer').innerHTML), toolbarmsg(true)\" style=\"width: calc(50% - 6px); position: absolute; bottom: 5px; right: 5px\">Save Level</button></div>"
 }
 else {
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 18px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">You have not made or load a level yet. Build a level and then save the level.<button onclick=\"toolbarmsg(true)\" style=\"width: calc(100% - 6px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>"
@@ -1159,6 +1171,7 @@ document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opa
 }
 }
 function playTheGame() {
+started = true;
 var sound = new Audio("./assets/sfx/mario.wav");
 if (!sfxMuted) sound.play();
 // document.getElementById('titlescreencontainer').remove()
@@ -1359,20 +1372,21 @@ textarea {
 	transform: scale(1.15);
 }
 </style>
-</head><body id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom(); getParams(); boot()">
+</head><body ondblclick='if(started) displaygsshow();' id="thebody" onload="chance(); splashText(); applyCollision(); splashTextRandom(); getParams(); boot()">
 <!-- This is the title screen code. -->
 <div class="dashboard" style="position: fixed; top: 0px; left: 0px; z-index: -1000; height: 100%; width: 100%"></div>
 <div class="darkencss" id="darken" style="pointer-events: none; background: transparent none repeat scroll 0% 0%; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 1000;"></div><div class="titlescreenclass" id="titlescreencontainer" style="overflow-y: scroll; top: 0px; left: 0px; position: fixed; width: 100%; height: 100%; background-color: #FFFFFF; z-index: 1">
 <audio id="titleMusic" controls="" autoplay="" loop="" style="display: none"><source id="titleSong" src="./assets/titlescreen.mp3" type="audio/mpeg"></audio>
 <div style="display: block; width: 50%; height: 25%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -75%); text-align: center; font-size: 48px">
 <img onclick="whatissmmnet()" title="What is SMM.NET? (Super Mario Maker.NET)" id="titleLogo" style="width: 438px; height: 156px" src="./assets/logo.png"><br>
-<text style="font-size: 24px; color: #000000">Prototype Version Alpha 1.1.6</text><br><br>
+<text style="font-size: 24px; color: #000000">Prototype Version Alpha 1.1.7</text><br><br>
 <button class="titlebutton" id="playbtn" onclick="playTheGame()">Play and Start Making!</button><br><br>
 <button class="titlebutton" onclick="themes()">Themes</button><br>
 <button class="titlebutton" onclick="playlevel()">Play level (Unfinished)</button><br>
 <text style="font-size: 16px; color: #000000">Code: <input id="codeBox" type="text" name="password">
 <button class="titlebutton" onclick="submitCode()">Submit</button><br><p id="wrong" style="color: #fc0303"></p></text></div>
 <text style="color: yellow; font-size: 23px; text-shadow: black 1px 1px 1px; right: 227px; top: 40%; position: absolute; transform: rotate(-10deg);" id="splash">Now with playable Mario!</text>
+<div onclick='alert("Hello")' style='position: fixed; right: 0px; bottom: 0px; width: 32px; height: 32px;'></div>
 <div id="kava"></div>
 <text style="font-size: 24px; bottom: 5px; left: 5px; position: absolute; color: #000000">Copyright (C) 2020 Goombud Studios, Zangpule Company<br>Check about for info.<span id="darkbeast"></span></text></div>
 <span style="font-size: 16pt;"><i>
@@ -1413,5 +1427,12 @@ document.getElementById('playbtn').addEventListener('click', fadeOutTitle);
 <td><div id="elementcont7"><img collision="0" class="element7" id="element7" draggable="true" ondragstart="drag(event, this)" src="./assets/smb/mario.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute('onclick')"></div></td>
 <td style="background-color: #7f7fff"><div id="clickobject" style="width: 32px; height: 32px; background-color: #7F7FFF;"><img id="blenk" src="./assets/smb/brick.png"></div></td></tr>
 </tbody></table></i></span>
-</body></html>
+</body>
+<!-- Script table for when all resources get loaded -->
+<script>
+	if (params.get('skiptitle') == "true") {
+	playTheGame()
+	}
+</script>
+</html>
 <!-- End of the editor and whole proto code. -->
