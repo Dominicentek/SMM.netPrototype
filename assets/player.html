@@ -361,6 +361,7 @@ keys[mJumpBTN] = function() { jump(); }
 KeyboardController(keys, repeatRate);
 }
 function readSnetlvl() {
+document.getElementById('backgroundSong').pause()
 textNode.innerHTML = 'Loading...'
 document.body.appendChild(textNode)
 if (!file) file = document.getElementById("snetlvl").files[0];
@@ -593,10 +594,10 @@ mario.element.style.left = marioPos.drawPos.x + 'px'
 function jump(fall) {
 if (mario.jump || (fall && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 0 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 2 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 5)) return;
 mario.jump = true
-var maxHeight = 128;
+var maxHeight = 80;
 var height = 0;
 var acceleration = 0.120;
-var speed = 4;
+var speed = 5;
 if (fall) speed = -speed;
 var distanceY = (camera.dimensions.height - document.getElementById('level').height) / 2
 if (distanceY < 0) distanceY = 0;
@@ -782,6 +783,7 @@ button:hover {
 </style>
 </head>
 <body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none; overflow: hidden" onload="loadIntroScreen()">
+<audio id='backgroundSong' controls="" autoplay="" loop="" style="display: none"><source src="./player.mp3" type="audio/mpeg"></audio>
 <a href="../index.html" style="bottom: 10px; right: 10px; position: absolute" id="returnButton"><button>Return to Editor</button></a>
 <div id="config" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px">
 <div id="introscreen">
