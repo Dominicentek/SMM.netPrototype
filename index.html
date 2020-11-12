@@ -782,8 +782,15 @@ goFullScreen()
 document.getElementById('thebody').innerHTML = '<img src="./assets/rice.jpg" style="width: 100%; height: 100%"></img>'
 }
 else if (document.getElementById("codeBox").value == 'aaaa') {
+playacceptsound()
 document.getElementById('titleSong').src = './assets/aaaa.mp3'
 document.getElementById('titleMusic').load()
+document.getElementById('wrong').style = 'color: #00cc25;'
+document.getElementById('wrong').innerHTML = 'Code accepted!'
+}
+else if (document.getElementById("codeBox").value == 'sme') {
+playacceptsound()
+window.location.replace('https://dominicentek.github.io/SuperMarioExpanded/');
 document.getElementById('wrong').style = 'color: #00cc25;'
 document.getElementById('wrong').innerHTML = 'Code accepted!'
 }
