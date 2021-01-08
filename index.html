@@ -1,5 +1,5 @@
 <!-- This is the whole proto code. -->
-<html id="main" translate="no" lang="en"><head><!-- This kills Google Translate --><meta name="google" content="notranslate"><title>SMM.NET Alpha 1.2</title><meta content="./assets/smbs/serverimg.png" itemprop="image"><link href="./assets/smbs/serverimg.png" rel="shortcut icon"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html id="main" translate="no" lang="en"><head><!-- This kills Google Translate --><meta name="google" content="notranslate"><title>SMM.NET Alpha 1.3 Test Build 1</title><meta content="./assets/smbs/serverimg.png" itemprop="image"><link href="./assets/smbs/serverimg.png" rel="shortcut icon"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./assets/js/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -193,6 +193,7 @@ quitFullScreen()
 }
 }
 }
+var gstype = '';
 var gs = "smb";
 var tb = "tool1";
 var idIndex = 0;
@@ -235,12 +236,12 @@ ev.target.firstChild.setAttribute('collision', collisionAttr)
 scanimages();
 }
 function scanimages() {
-if (document.getElementById('elementcont1').innerHTML === "") document.getElementById('elementcont1').innerHTML = '<img collision="3" class="element1" id="element1" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/brick.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+if (document.getElementById('elementcont1').innerHTML === "") document.getElementById('elementcont1').innerHTML = '<img collision="3" class="element1" id="element1" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/' + gstype + 'brick.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 else if (document.getElementById('elementcont2').innerHTML === "") document.getElementById('elementcont2').innerHTML = '<img collision="4" class="element2" id="element2" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/question.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 else if (document.getElementById('elementcont3').innerHTML === "") document.getElementById('elementcont3').innerHTML = '<img collision="1" class="element3" id="element3" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/stone.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
-else if (document.getElementById('elementcont4').innerHTML === "") document.getElementById('elementcont4').innerHTML = '<img collision="1" class="element4" id="element4" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/ground.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
-else if (document.getElementById('elementcont5').innerHTML === "") document.getElementById('elementcont5').innerHTML = '<img collision="2" class="element5" id="element5" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/coin.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
-else if (document.getElementById('elementcont6').innerHTML === "") document.getElementById('elementcont6').innerHTML = '<img collision="1" class="element6" id="element6" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/dirt.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+else if (document.getElementById('elementcont4').innerHTML === "") document.getElementById('elementcont4').innerHTML = '<img collision="1" class="element4" id="element4" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/' + gstype + 'ground.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+else if (document.getElementById('delementcont5').innerHTML === "") document.getElementById('elementcont5').innerHTML = '<img collision="2" class="element5" id="element5" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/coin.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+else if (document.getElementById('elementcont6').innerHTML === "") document.getElementById('elementcont6').innerHTML = '<img collision="1" class="element6" id="element6" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/' + gstype + 'dirt.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 else if (document.getElementById('elementcont7').innerHTML === "") document.getElementById('elementcont7').innerHTML = '<img collision="0" class="element7" id="element7" draggable="true" ondragstart="drag(event, this)" src="./assets/' + gs + '/mario.png" onclick="document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 }
 function switchGamestyle(id) {
@@ -269,12 +270,18 @@ else if (id == 21) gs = "sboi"
 else if (id == 22) gs = "smrpg"
 else if (id == 23) gs = "smm2014smb"
 else if (id == 24) gs = "mm2"
-document.getElementById('musicsource').src = "./assets/" + gs + "/theme.mp3"
+document.getElementById('musicsource').src = "./assets/" + gs + "/" + gstype + "theme.mp3"
 document.getElementById("bgmusic").load();
 if (musicMuted) document.getElementById("bgmusic").pause();
 else document.getElementById("bgmusic").play();
 displaygs(true, true)
 updateElms();
+}
+function musicchange() {
+document.getElementById('musicsource').src = "./assets/" + gs + "/" + gstype + "theme.mp3"
+document.getElementById("bgmusic").load();
+if (musicMuted) document.getElementById("bgmusic").pause();
+else document.getElementById("bgmusic").play();
 }
 function toolbarchoose(id) {
 if (id == 0) document.getElementById('newtoolbar').innerHTML = '<button onclick="displaygs()">Gamestyles (Alt+1)</button>';
@@ -860,25 +867,53 @@ function het2(playAccept, fromScrollbar) {
 playacceptsound()
 document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\">Sorry but, nope.<button onclick=\"het(true); darken = 0;\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">OK</button></div>";
 }
+function changelog(playAccept, fromScrollbar) {
+if (darken == 0) {
+allowpressbutton = false;
+darken = 1;
+if (!fromScrollbar) var sound = new Audio(dialogSFX);
+if (!sfxMuted) sound.play();
+document.getElementById('darken').style = "pointer-events: all; background: rgba(0,0,0,0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><b><i style=\"position: absolute; left: calc(25% - 11px)\">Super Mario Maker.NET Changelog</i></b><br><br><b>Version Alpha 1.3 Test Build:</b><br>- Added Underground level theme<br>- Updated SMB gamestyle to work with the Underground level theme<button onclick=\"changelog(); darken = 0;\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Ok</button></div>";
+$('#darken').fadeOut(0);
+$('#darken').fadeIn(150);
+}
+else {
+allowpressbutton = true;
+darken = 0;
+if (!playAccept) var sound = new Audio(cancelSFX);
+else var sound = new Audio(acceptSFX);
+if (!sfxMuted) sound.play();
+/* document.getElementById('darken').innerHTML = "";
+document.getElementById('darken').style = "pointer-events: none; background: rgba(0,0,0,0); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 15";
+*/
+$('#darken').fadeOut(150);
+}
+}
 function playacceptsound() {
 var sound = new Audio(acceptSFX);
+if (!sfxMuted) sound.play();
+}
+function playcancelsound() {
+var sound = new Audio(cancelSFX);
 if (!sfxMuted) sound.play();
 }
 function itembox() {
 if (allowpressbutton) {
 displaygs()
-document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 10%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><span id=\"elementcont1\"></span><span id=\"elementcont2\"></span><span id=\"elementcont3\"></span><span id=\"elementcont4\"></span><span id=\"elementcont5\"></span><span id=\"elementcont6\"></span><span id=\"elementcont7\"></span><button onclick=\"displaygs()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
+document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opacity: 1; display: block; font-family: Arial; font-size: 20px; width: 50%; height: 25%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)\"><span id=\"elementcont1\"></span><span id=\"elementcont2\"></span><span id=\"elementcont3\"></span><span id=\"elementcont4\"></span><span id=\"elementcont5\"></span><span id=\"elementcont6\"></span><span id=\"elementcont7\"></span><button style=\"width: calc(50% - 11px); position: absolute; bottom: 37px; right: 5px\" onclick=\"gstype = ''; updateElms(); playacceptsound();musicchange()\">Overworld</button><button style=\"width: calc(50% - 11px); position: absolute; bottom: 37px; left: 5px\" onclick=\"if(gs == 'smb') {gstype = 'underground_'; updateElms(); playacceptsound();musicchange()} else playcancelsound();\">Underground</button><button onclick=\"displaygs()\" style=\"width: calc(100% - 11px); position: absolute; bottom: 5px; left: 5px\">Cancel</button></div>";
 updateElms()
 applyCollision()
 }
 }
 function updateElms() {
-document.getElementById('elementcont1').innerHTML = '<img collision="3" class="element1" id="element1" src="./assets/' + gs + '/brick.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+if(gs != "smb") gstype = '';
+document.getElementById('elementcont1').innerHTML = '<img collision="3" class="element1" id="element1" src="./assets/' + gs + '/' + gstype + 'brick.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 document.getElementById('elementcont2').innerHTML = '<img collision="4" class="element2" id="element2" src="./assets/' + gs + '/question.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 document.getElementById('elementcont3').innerHTML = '<img collision="1" class="element3" id="element3" src="./assets/' + gs + '/stone.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
-document.getElementById('elementcont4').innerHTML = '<img collision="1" class="element4" id="element4" src="./assets/' + gs + '/ground.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+document.getElementById('elementcont4').innerHTML = '<img collision="1" class="element4" id="element4" src="./assets/' + gs + '/' + gstype + 'ground.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 document.getElementById('elementcont5').innerHTML = '<img collision="2" class="element5" id="element5" src="./assets/' + gs + '/coin.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
-document.getElementById('elementcont6').innerHTML = '<img collision="1" class="element6" id="element6" src="./assets/' + gs + '/dirt.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
+document.getElementById('elementcont6').innerHTML = '<img collision="1" class="element6" id="element6" src="./assets/' + gs + '/' + gstype + 'dirt.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 document.getElementById('elementcont7').innerHTML = '<img collision="0" class="element7" id="element7" src="./assets/' + gs + '/mario.png" onclick="displaygs();document.getElementById(`clickobject`).innerHTML=this.outerHTML;document.getElementById(`clickobject`).firstChild.removeAttribute(\'onclick\')">'
 }
 function submit() {
@@ -1101,7 +1136,7 @@ document.getElementById('darken').innerHTML = "<div class=\"border\" style=\"opa
 }
 function readFolder() {
 gs = document.getElementById('gsfolder').value
-document.getElementById('musicsource').src = "./assets/" + gs + "/theme.mp3"
+document.getElementById('musicsource').src = "./assets/" + gs + "/" + gstype + "theme.mp3"
 document.getElementById("bgmusic").load();
 updateElms()
 displaygs(true);
@@ -1416,10 +1451,11 @@ textarea {
 <audio id="titleMusic" controls="" autoplay="" loop="" style="display: none"><source id="titleSong" src="./assets/titlescreen.mp3" type="audio/mpeg"></audio>
 <div style="display: block; width: 50%; height: 25%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -75%); text-align: center; font-size: 48px">
 <img onclick="whatissmmnet()" title="What is SMM.NET? (Super Mario Maker.NET)" id="titleLogo" style="width: 438px; height: 156px" src="./assets/logo.png"><br>
-<text style="font-size: 24px; color: #000000">Version Alpha 1.2</text><br><br>
+<text style="font-size: 24px; color: #000000">Version Alpha 1.3 Test Build 1</text><br><br>
 <button class="titlebutton" id="playbtn" onclick="playTheGame()">Play and Start Making!</button><br><br>
 <button class="titlebutton" onclick="themes()">Themes</button><br>
 <button class="titlebutton" onclick="playlevel()">Play level (Unfinished)</button><br>
+<button class="titlebutton" onclick="changelog()">Changelog</button><br>
 <text id="code:" style="font-size: 16px; color: #000000">Code: <input id="codeBox" type="text" name="password">
 <button class="titlebutton" onclick="submitCode()" id="subcodebtn">Submit</button><br><p id="wrong" style="color: #fc0303"></p></text></div>
 <text style="color: yellow; font-size: 23px; text-shadow: black 1px 1px 1px; right: 227px; top: 40%; position: absolute; transform: rotate(-10deg); text-align: left" id="splash">Loading splash...</text>
