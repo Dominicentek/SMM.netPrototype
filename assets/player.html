@@ -6,6 +6,7 @@
 <script>
 var developerMode = false
 
+var tempsong = "";
 var keyboardMap = [
   "", // [0]
   "", // [1]
@@ -289,7 +290,7 @@ elem.msRequestFullscreen();
 }
 }
 var camera = {"pos": {"x": 0, "y": 0}, "speed": {"x": 10, "y": 10}, "dimensions": {"width": 0, "height": 0, "level": {"width": 0, "height": 0}}}
-var mario = {"right": 0, "left": 0, "jump": false, "element": undefined, "speed": {"x": 5, "y": 5}}
+var mario = {"right": 0, "left": 0, "jump": false, "element": undefined, "speed": {"x": 3, "y": 5}}
 var controller = {"jump": 0, "left": 0, "right": 0, "scrollUp": 0, "scrollDown": 0, "scrollLeft": 0, "scrollRight": 0}
 var repeatRate = 25
 var awaitActive = false;
@@ -310,6 +311,7 @@ timers[key]= setInterval(keys[key], repeat);
 return false;
 };
 document.onkeyup= function(event) {
+if(keys[mRunBTN]) mario.speed.x = 3
 var key= (event || window.event).keyCode;
 if (key in timers) {
 if (timers[key]!==null)
@@ -334,6 +336,7 @@ var marioPos = {"x": 0, "y": 0, "drawPos": {"x": 0, "y": 0}}
 var mLeftBTN
 var mRightBTN
 var mJumpBTN
+var mRunBTN
 var cLeftBTN
 var cRightBTN
 var cUpBTN
@@ -354,10 +357,12 @@ document.getElementById('snetlvl').click()
 mLeftBTN = parseInt(document.getElementById('mLeft').getAttribute('keycode'))
 mRightBTN = parseInt(document.getElementById('mRight').getAttribute('keycode'))
 mJumpBTN = parseInt(document.getElementById('mJump').getAttribute('keycode'))
+mRunBTN = parseInt(document.getElementById('mRun').getAttribute('keycode'))
 var keys = {}
 keys[mLeftBTN] = function() { move('left'); }
 keys[mRightBTN] = function() { move('right'); }
 keys[mJumpBTN] = function() { jump(); }
+keys[mRunBTN] = function() { mario.speed.x = 5; }
 KeyboardController(keys, repeatRate);
 }
 function readSnetlvl() {
@@ -415,6 +420,7 @@ document.getElementById('level').getContext('2d').clearRect(marioPos.x, marioPos
 var marioImage = col.firstElementChild.firstElementChild.firstElementChild.src
 mario.element = document.createElement('img')
 mario.element.setAttribute('src', marioImage)
+mario.element.setAttribute('id',"marioimg")
 var distanceX = (camera.dimensions.width - canvas.width) / 2
 var distanceY = (camera.dimensions.height - canvas.height) / 2
 var offscreenDistanceY = camera.dimensions.level.height - canvas.height
@@ -452,7 +458,7 @@ document.body.appendChild(ui)
 if (runningonphone) {
 var buttons = document.createElement('div')
 buttons.setAttribute('style', 'bottom: 10px; left: 10px; width: calc(100% - 20px); height: 50px; position: absolute')
-buttons.innerHTML = "<button onpointerdown=\"movingInterval = setInterval(function() { move('left') }, 35)\" onpointerup=\"clearInterval(movingInterval)\" style=\"top: 0px; left: 0px; position: absolute; width: 50px; height: 50px\"><</button><button onpointerdown=\"movingInterval = setInterval(function() { move('right') }, 35)\" onpointerup=\"clearInterval(movingInterval)\" style=\"left: 55px; top: 0px; position: absolute; width: 50px; height: 50px\">></button><button onclick=\"jump()\" style=\"top: 0px; right: 0px; position: absolute; width: 50px; height: 50px\">^</button>"
+buttons.innerHTML = "<button onpointerdown=\"movingInterval = setInterval(function() { move('left') }, 35)\" onpointerup=\"clearInterval(movingInterval)\" style=\"top: 0px; left: 0px; position: absolute; width: 50px; height: 50px\"><</button><button onpointerdown=\"movingInterval = setInterval(function() { move('right') }, 35)\" onpointerup=\"clearInterval(movingInterval)\" style=\"left: 55px; top: 0px; position: absolute; width: 50px; height: 50px\">></button><button onclick=\"jump()\" style=\"top: 0px; right: 0px; position: absolute; width: 50px; height: 50px\">^</button><button onpointerdown=\"mario.speed.x = 6\" onpointerup=\"mario.speed.x = 3\" style=\"top: 0px; right: 65px; position: absolute; width: 60px; height: 50px\">Run</button>"
 document.body.appendChild(buttons)
 }
 }
@@ -469,6 +475,7 @@ textNode.innerHTML = 'Cannot find collision data in your snetlvl file'
 }, 1000)
 div.remove()
 document.body.appendChild(music)
+document.getElementById("another").style.visibility = "visible"
 }
 }
 }
@@ -571,7 +578,9 @@ awaitActive = false
 }
 }
 function move(dir) {
+var marioimage = document.getElementById("marioimg")
 if (dir === 'left') {
+marioimage.style.transform = "scaleX(-1)"
 if (getCollisionDataByGridPos(getPlayerGridPosition(-0.5, 0)) != 0 && getCollisionDataByGridPos(getPlayerGridPosition(-0.5, 0)) != 2 && getCollisionDataByGridPos(getPlayerGridPosition(-0.5, 0)) != 5) return;
 if (getCollisionDataByGridPos(getPlayerGridPosition(0, 0)) == 2) getCoin()
 marioPos.drawPos.x -= mario.speed.x;
@@ -581,6 +590,7 @@ if (marioPos.drawPos.x <= 200) scroll('left')
 jump(true)
 }
 if (dir === 'right') {
+marioimage.style.transform = "scaleX(1)"
 if (getCollisionDataByGridPos(getPlayerGridPosition(0.5, 0)) != 0 && getCollisionDataByGridPos(getPlayerGridPosition(0.5, 0)) != 2 && getCollisionDataByGridPos(getPlayerGridPosition(0.5, 0)) != 5) return;
 if (getCollisionDataByGridPos(getPlayerGridPosition(0, 0)) == 2) getCoin()
 marioPos.drawPos.x += mario.speed.x;
@@ -594,9 +604,13 @@ mario.element.style.left = marioPos.drawPos.x + 'px'
 function jump(fall) {
 if (mario.jump || (fall && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 0 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 2 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 5)) return;
 mario.jump = true
-var maxHeight = 80;
+if (!fall) {
+var sfx = new Audio("./jump.wav")
+sfx.play()
+}
+var maxHeight = 40;
 var height = 0;
-var acceleration = 0.120;
+var acceleration = 0.25;
 var speed = 5;
 if (fall) speed = -speed;
 var distanceY = (camera.dimensions.height - document.getElementById('level').height) / 2
@@ -606,7 +620,7 @@ if (offscreenDistance < 0) offscreenDistance = 0
 var origPos = marioPos.y
 var origSpeed = speed
 var interval = setInterval(function() {
-if (height >= maxHeight / 2) speed -= acceleration
+if (height >= maxHeight) speed -= acceleration
 if (speed < 0 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 0 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 2 && getCollisionDataByGridPos(getPlayerGridPosition(0, -0.5)) != 5) {
 clearInterval(interval)
 mario.jump = false
@@ -638,12 +652,31 @@ mario.element.style.display = "none"
 document.getElementById('uiContainer').style.display = "none"
 lives--
 if (lives == 0) {
-textNode.innerHTML = 'Game Over.'
+document.getElementById("musicsource").src = "gameover.mp3";
+document.getElementById("bgmusic").loop = false;
+document.getElementById("bgmusic").load();
+document.getElementById("bgmusic").play();
+textNode.innerHTML = '<img src="./gameover.png"/>'
+setTimeout(function() {
+location.reload();
+}, 5000)
 return
 }
-textNode.innerHTML = 'You Died.<br><br><div style="text-align: center; width: 100%"><button onclick="respawn()">Respawn</button>'
+tempsong = document.getElementById("musicsource").src
+document.getElementById("musicsource").src = "playerdown.mp3";
+document.getElementById("bgmusic").loop = false;
+document.getElementById("bgmusic").load();
+document.getElementById("bgmusic").play();
+textNode.innerHTML = '<img src="./smb/mario.png"/> -1'
+setTimeout(function() {
+respawn();
+}, 3000)
 }
 function respawn() {
+document.getElementById("musicsource").src = tempsong;
+document.getElementById("bgmusic").loop = true;
+document.getElementById("bgmusic").load();
+document.getElementById("bgmusic").play();
 document.getElementById('level').style.display = "inline"
 document.getElementById('uiContainer').style.display = "inline"
 mario.element.style.display = "inline"
@@ -693,8 +726,6 @@ function loadIntroScreen() {
 if (developerMode) document.getElementById('debuggingHelp').innerHTML = '<h1 style="display: block; left: 50%; position: absolute; transform: translate(-50%, 0px)">Debugging</h1><br><br><br><br><b>TAB</b> Display debug menu<br><b></b>'
 if (runningonphone) {
 document.getElementById('introscreen').remove()
-document.getElementById('returnButton').style = "top: 10px; right: 10px; position: absolute"
-
 }
 }
 window.onkeydown = function(event) {
@@ -783,8 +814,7 @@ button:hover {
 </style>
 </head>
 <body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none; overflow: hidden" onload="loadIntroScreen()">
-<audio id='backgroundSong' controls="" autoplay="" loop="" style="display: none"><source src="./player.mp3" type="audio/mpeg"></audio>
-<a href="../index.html" style="bottom: 10px; right: 10px; position: absolute" id="returnButton"><button>Return to Editor</button></a>
+<audio id='backgroundSong' controls="" autoplay="" loop="" style="display: none"><source src="./player.mp3" type="audio/mpeg"/></audio>
 <div id="config" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px">
 <div id="introscreen">
 <img style="width: 438px; height: 156px; display: block; left: 50%; position: absolute; transform: translate(-50%, 10px)" src="./logo.png"></img><br>
@@ -795,7 +825,8 @@ button:hover {
 <br>
 Move Left: <button id="mLeft" onclick="awaitButton(this)" keycode="undefined">Click to Set</button><br>
 Move Right: <button id="mRight" onclick="awaitButton(this)" keycode="undefined">Click to Set</button><br>
-Jump: <button id="mJump" onclick="awaitButton(this)" keycode="undefined">Click to Set</button><br><br>
+Jump: <button id="mJump" onclick="awaitButton(this)" keycode="undefined">Click to Set</button><br>
+Run:  <button id="mRun" onclick="awaitButton(this)" keycode="undefined">Click to Set</button><br><br>
 <div id="debuggingHelp"></div>
 </div>
 <button onclick="prepare()" class="openFile" style="width: 100%; height: 100px; position: absolute; bottom: 0px; left: 0px">Open .snetlvl File</button>
@@ -803,5 +834,7 @@ Jump: <button id="mJump" onclick="awaitButton(this)" keycode="undefined">Click t
 </div>
 <canvas id="level" style="pointer-events: none; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"></canvas>
 <text id="text" style="font-size: 48px; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"></text>
+<a href="../index.html" style="top: 64px; right: 10px; position: absolute"><button>Return to Editor</button></a>
+<button style="top: 32px; right: 10px; position: absolute; visibility: hidden" id="another" onclick="location.reload()">Load Another Level</button>
 </body>
 </html>
